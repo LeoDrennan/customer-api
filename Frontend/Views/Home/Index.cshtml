@@ -1,0 +1,75 @@
+﻿@model CustomerViewModel
+@{
+    ViewData["Title"] = "Customers";
+}
+
+<div class="row">
+    <h1 class="display-2 text-center">Customers</h1>
+
+    <!-- Create Customer -->
+    <div class="row">
+        <h3>Create Customer</h3>
+        <div class="row mt-1">
+            <form asp-action="Index" method="post" asp-controller="Home">
+                <div class="row">
+                    <div class="col">
+                        <input asp-for="FirstName" class="form-control" placeholder="First Name" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <input asp-for="LastName" class="form-control" placeholder="Last Name" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <input asp-for="Email" class="form-control" placeholder="Email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number" />
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="col"><input type="submit" class="btn btn-primary" value="Create" /></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Customer Table -->
+    <div class="row">
+        <div class="table-responsive small col-md-12">
+            <table id="customers" class="table table-bordered mt-3">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col" class="align-top" style="width:500px">
+                            Id
+                        </th>
+                        <th scope="col" class="align-top" style="width:500px">
+                            First Name
+                        </th>
+                        <th scope="col" class="align-top" style="width:500px">
+                            Last Name
+                        </th>
+                        <th scope="col" class="align-top" style="width:500px">
+                            Email
+                        </th>
+                        <th scope="col" class="align-top" style="width:500px">
+                            Phone Number
+                        </th>
+                        <th scope="col" class="align-top" style="width:500px">
+
+                        </th>
+                        <th scope="col" class="align-top" style="width:500px">
+
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/js/home.js"></script>
+}

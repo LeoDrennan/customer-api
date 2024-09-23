@@ -54,6 +54,7 @@ namespace API.Controllers.Customers
         /// <response code="200">The customer was found and returned.</response>
         /// <response code="404">No customer could be found with the id provided.</response>
         [HttpGet("{id:int:min(1)}", Name = nameof(GetCustomerByIdAsync))]
+        [ActionName(nameof(GetCustomerByIdAsync))]
         [ProducesResponseType(typeof(CustomerResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetCustomerByIdAsync([FromRoute] int id)
@@ -137,7 +138,7 @@ namespace API.Controllers.Customers
         /// <param name="id"></param>
         /// <response code="204">The customer was successfully deleted.</response>
         /// <response code="404">No customer could be found with the id provided.</response>
-        [HttpDelete]
+        [HttpDelete("{id:int:min(1)}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteCustomerAsync([FromRoute] int id)
@@ -148,7 +149,7 @@ namespace API.Controllers.Customers
 
                 if (customer is null) return NotFound();
 
-                _customerService.DeleteCustomerById(id);
+                await _customerService.DeleteCustomerById(id);
 
                 return NoContent();
             }

@@ -8,5 +8,5 @@ public interface ICustomerService
     Task<CustomerModel?> GetByIdAsync(int id);
     Task<CustomerModel> CreateCustomerAsync(CustomerModel customer);
     Task<CustomerModel> UpdateCustomerAsync(CustomerModel customer);
-    void DeleteCustomerById(int id);
+    Task DeleteCustomerById(int id);
 }

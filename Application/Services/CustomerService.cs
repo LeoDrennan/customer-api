@@ -25,7 +25,7 @@ namespace Application.Services
         public async Task<CustomerModel> UpdateCustomerAsync(CustomerModel customer)
             => await _customerRepository.UpdateAsync(customer);
 
-        public async void DeleteCustomerById(int id)
+        public async Task DeleteCustomerById(int id)
             => await _customerRepository.DeleteByIdAsync(id);
     }
 }

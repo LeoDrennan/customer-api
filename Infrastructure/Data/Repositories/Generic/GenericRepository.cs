@@ -58,10 +58,11 @@ internal class GenericRepository<TEntity, TModel> : IGenericRepository<TEntity, 
     {
         TEntity? entity = await _context.Set<TEntity>().FindAsync(id);
 
-        if (entity is null) return;
+        if (entity is not null)
+        {
+            _context.Set<TEntity>().Remove(entity);
 
-        _context.Set<TEntity>().Remove(entity);
-
-        await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+        }
     }
 }
