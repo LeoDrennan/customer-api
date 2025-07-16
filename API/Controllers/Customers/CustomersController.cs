@@ -37,7 +37,7 @@ namespace API.Controllers.Customers
             {
                 List<CustomerModel> customers = await _customerService.GetAllAsync();
 
-                CustomersListResponse response = CustomersMapper.Map(customers);
+                CustomersListResponse response = customers.ToResponse();
 
                 return Ok(response);
             }
@@ -65,7 +65,7 @@ namespace API.Controllers.Customers
 
                 if (customer is null) return NotFound();
 
-                CustomerResponse response = CustomersMapper.Map(customer);
+                CustomerResponse response = customer.ToResponse();
 
                 return Ok(response);
             }
@@ -88,13 +88,11 @@ namespace API.Controllers.Customers
         {
             try
             {
-                CustomerModel model = CustomersMapper.Map(request);
+                CustomerModel model = request.ToModel();
 
                 CustomerModel createdCustomer = await _customerService.CreateCustomerAsync(model);
 
-                CustomerResponse response = CustomersMapper.Map(createdCustomer);
-
-                return CreatedAtAction(nameof(GetCustomerByIdAsync), new { id = response.Id }, response);
+                return CreatedAtAction(nameof(GetCustomerByIdAsync), new { id = createdCustomer.Id });
             }
             catch (Exception ex)
             {
@@ -118,13 +116,13 @@ namespace API.Controllers.Customers
         {
             try
             {
-                CustomerModel model = CustomersMapper.Map(id, request);
+                if (_customerService.GetByIdAsync(id) is null) return NotFound();
+
+                CustomerModel model = request.ToModel(id);
 
                 CustomerModel updatedCustomer = await _customerService.UpdateCustomerAsync(model);
 
-                CustomerResponse response = CustomersMapper.Map(updatedCustomer);
-
-                return Ok(response);
+                return Ok(updatedCustomer.ToResponse());
             }
             catch (Exception ex)
             {

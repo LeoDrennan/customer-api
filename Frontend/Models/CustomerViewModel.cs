@@ -7,17 +7,17 @@ namespace Frontend.Models
 
         [Required]
         [Display(Name = "First Name")]
-        public string FirstName { get; set; }
+        public string FirstName { get; init; } = string.Empty;
 
         [Required]
         [Display(Name = "Last Name")]
-        public string LastName { get; set; }
+        public string LastName { get; init; } = string.Empty;
 
         [Required]
         [Display(Name = "Email")]
-        public string Email { get; set; }
+        public string Email { get; init; } = string.Empty;
 
         [Display(Name = "Phone Number")]
-        public string? PhoneNumber { get; set; }
+        public string? PhoneNumber { get; init; }
     }
 }

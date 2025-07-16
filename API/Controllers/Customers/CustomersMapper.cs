@@ -5,7 +5,7 @@ namespace API.Controllers.Customers
 {
     public static class CustomersMapper
     {
-        public static CustomersListResponse Map(List<CustomerModel> customers)
+        public static CustomersListResponse ToResponse(this List<CustomerModel> customers)
         {
             return new CustomersListResponse
             {
@@ -20,7 +20,7 @@ namespace API.Controllers.Customers
             };
         }
 
-        public static CustomerResponse Map(CustomerModel customer)
+        public static CustomerResponse ToResponse(this CustomerModel customer)
         {
             return new CustomerResponse
             {
@@ -33,7 +33,7 @@ namespace API.Controllers.Customers
 
         }
 
-        public static CustomerModel Map(CustomerRequest request)
+        public static CustomerModel ToModel(this CustomerRequest request)
         {
             return new CustomerModel
             {
@@ -44,7 +44,7 @@ namespace API.Controllers.Customers
             };
         }
 
-        public static CustomerModel Map(int id, CustomerRequest request)
+        public static CustomerModel ToModel(this CustomerRequest request, int id)
         {
             return new CustomerModel
             {

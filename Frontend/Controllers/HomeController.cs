@@ -1,5 +1,6 @@
 using Frontend.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using System.Text;
